@@ -1,10 +1,11 @@
 'use client'
 
 import styles from './Page.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AddExpens from './components/UI/AddExpens';
 import TableOfExpens from './components/UI/TableOfExpens';
 import Theme from './components/Theme/Theme';
+import { ThemeContext } from './context/ThemeProvider';
 
 function TodayForInputDefault() { //Дата в формате YYYY-MM-DD для input defaultValue
   let currentToday = new Date();
@@ -28,6 +29,11 @@ export default function Home() {
   //theme mode
 
   const [darkMode, setDarkMode] = useState(false);
+
+
+  let a = useContext(ThemeContext);
+  console.log(a);
+
   const [themeName, setThemeName] = useState('Темная тема');
 
   const onThemeHandler = () => {

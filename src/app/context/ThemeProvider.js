@@ -1,17 +1,16 @@
 'use client';
 import { createContext, useState } from 'react';
 
-const Theme = createContext();
+export const ThemeContext = createContext();
 
-const ThemeProvider = (children) => {
-    const [isDarkmode, setDarkMode] = useState(false);
-
+const ThemeProvider = ({ children }) => {
+    const isDarkmode = 222;
     return (
-        <ThemeProvider.Provider value={{ isDarkmode }}>
+        <ThemeContext.Provider value={{ isDarkmode }} >
 
             {children}
 
-        </ThemeProvider.Provider>
+        </ThemeContext.Provider >
     );
 }
 
