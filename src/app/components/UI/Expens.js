@@ -7,6 +7,10 @@ import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import { ThemeContext } from '../../context/ThemeProvider';
 
+import { store } from '@/app/store/store';
+import { Provider } from 'react-redux'
+import { Counter } from '@/app/store/Counter';
+
 function TodayForInputDefault() { //Дата в формате YYYY-MM-DD для input defaultValue
     let currentToday = new Date();
     let currentDate = currentToday.getDate() > 10 ? currentToday.getDate() : '0' + currentToday.getDate();
@@ -74,26 +78,29 @@ export default function Home() {
     }
 
     return (
+        <Provider store={store}>
+            <Theme>
+                <div className={styles.App}>
 
-        <Theme>
-            <div className={styles.App}>
+                    <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
 
-                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
+                    <p>Список расходов</p>
 
-                <p>Список расходов</p>
+                    <AddExpens
 
-                <AddExpens
+                        onExpensHandler={onExpensHandler}
+                        onPriceHandler={onPriceHandler}
+                        onUserDateHandler={onUserDateHandler}
+                        onSubmitHandler={onSubmitHandler}
+                        TodayForInputDefault={TodayForInputDefault}
+                    />
 
-                    onExpensHandler={onExpensHandler}
-                    onPriceHandler={onPriceHandler}
-                    onUserDateHandler={onUserDateHandler}
-                    onSubmitHandler={onSubmitHandler}
-                    TodayForInputDefault={TodayForInputDefault}
-                />
+                    <TableOfExpens listOfExpenses={listOfExpenses} />
+                </div >
 
-                <TableOfExpens listOfExpenses={listOfExpenses} />
-            </div >
+            </Theme>
 
-        </Theme>
+            <Counter></Counter>
+        </Provider>
     );
 }
