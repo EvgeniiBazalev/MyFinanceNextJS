@@ -2,7 +2,7 @@
 import ThemeProvider from "./ThemeProvider";
 // import { AuthProvider } from 'AuthProvider';
 
-const Providers = ({ children }) => {
+const ContextProviders = ({ children }) => {
     return (
         <ThemeProvider>
             {children}
@@ -10,4 +10,4 @@ const Providers = ({ children }) => {
     );
 }
 
-export default Providers;
+export default ContextProviders;
