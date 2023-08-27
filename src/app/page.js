@@ -28,11 +28,9 @@ function formatDate(date) { //Преобразование даты из фор�
 export default function Home() {
   //theme mode
 
-  const [darkMode, setDarkMode] = useState(false);
-
-
-  let a = useContext(ThemeContext);
-  console.log(a);
+  const contextData = useContext(ThemeContext);
+  const darkMode = contextData.isDarkMode;
+  const setDarkMode = contextData.setDarkMode;
 
   const [themeName, setThemeName] = useState('Темная тема');
 

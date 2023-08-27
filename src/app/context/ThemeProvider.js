@@ -4,9 +4,11 @@ import { createContext, useState } from 'react';
 export const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-    const isDarkmode = 222;
+
+    const [isDarkMode, setDarkMode] = useState(false);
+
     return (
-        <ThemeContext.Provider value={{ isDarkmode }} >
+        <ThemeContext.Provider value={{ isDarkMode, setDarkMode }} >
 
             {children}
 
