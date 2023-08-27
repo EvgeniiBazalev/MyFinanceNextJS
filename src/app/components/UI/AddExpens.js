@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from './AddExpens.module.css'
+import { useContext } from 'react';
+import { ThemeContext } from '@/app/context/ThemeProvider';
 
 
 const AddExpens = (props) => {
-
+    const { isDarkMode } = useContext(ThemeContext);
 
     return (
-        <div className={`${styles.expensForm} + ${props.darkMode ? styles.darkMode : styles.lightMode}`}>
+        <div className={`${styles.expensForm} + ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
             <form onSubmit={props.onSubmitHandler}>
                 <label>Категория расходов
                     <input

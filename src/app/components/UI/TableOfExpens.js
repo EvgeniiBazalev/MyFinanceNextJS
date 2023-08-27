@@ -1,8 +1,12 @@
 import styles from './TableOfExpens.module.css'
+import { useContext } from 'react';
+import { ThemeContext } from '@/app/context/ThemeProvider';
+
 
 const TableOfExpens = (props) => {
+    const { isDarkMode } = useContext(ThemeContext);
     return (
-        <table className={`${styles.tableOfExpenses} + ${props.darkMode ? styles.darkMode : styles.lightMode}`}>
+        <table className={`${styles.tableOfExpenses} + ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
             <thead>
                 <tr>
                     <th>№</th>
@@ -14,7 +18,7 @@ const TableOfExpens = (props) => {
             <tbody>
                 {props.listOfExpenses.map((item) => (
 
-                    <tr key={item.id} className={`${styles.listOfExpenses} + ${props.darkMode ? styles.darkMode : styles.lightMode}`}>
+                    <tr key={item.id} className={`${styles.listOfExpenses} + ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
                         <td className={styles.itemId}>{item.id}</td>
                         <td className={styles.itemExpens}>{item.expens}</td>
                         <td className={styles.itemDate}>{item.date}</td>

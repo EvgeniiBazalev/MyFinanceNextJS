@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './Theme.module.css'
+import { useContext } from 'react';
+import { ThemeContext } from '@/app/context/ThemeProvider';
 
-const Theme = (props) => {
+const Theme = ({ children }) => {
+    const { isDarkMode } = useContext(ThemeContext);
     return (
-        <div className={props.darkMode ? styles.darkMode : styles.lightMode}>{props.children}</div >
+        <div className={isDarkMode ? styles.darkMode : styles.lightMode}>{children}</div >
     );
 };
 

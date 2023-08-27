@@ -27,15 +27,11 @@ function formatDate(date) { //Преобразование даты из фор�
 
 export default function Home() {
     //theme mode
-
-    const contextData = useContext(ThemeContext);
-    const darkMode = contextData.isDarkMode;
-    const setDarkMode = contextData.setDarkMode;
-
+    const { isDarkMode, setDarkMode } = useContext(ThemeContext);
     const [themeName, setThemeName] = useState('Темная тема');
 
     const onThemeHandler = () => {
-        darkMode ? setThemeName('Темная тема') : setThemeName('Светлая тема');
+        isDarkMode ? setThemeName('Темная тема') : setThemeName('Светлая тема');
         setDarkMode(prevMode => !prevMode);
     }
 
@@ -79,15 +75,14 @@ export default function Home() {
 
     return (
 
-        <Theme darkMode={darkMode}>
+        <Theme>
             <div className={styles.App}>
 
-                <button className={`${styles.themeButton} + ${darkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
+                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
 
                 <p>Список расходов</p>
 
                 <AddExpens
-                    darkMode={darkMode}
 
                     onExpensHandler={onExpensHandler}
                     onPriceHandler={onPriceHandler}
@@ -96,7 +91,7 @@ export default function Home() {
                     TodayForInputDefault={TodayForInputDefault}
                 />
 
-                <TableOfExpens darkMode={darkMode} listOfExpenses={listOfExpenses} />
+                <TableOfExpens listOfExpenses={listOfExpenses} />
             </div >
 
         </Theme>
