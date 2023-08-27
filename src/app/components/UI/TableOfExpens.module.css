@@ -1,0 +1,46 @@
+/* Таблица - список расходов */
+
+.tableOfExpenses {
+    width: 100%;
+    max-width: 800px;
+    /* font-size: 2em; */
+    margin-top: 20px;
+  }
+  
+  
+  .listOfExpenses {
+    width: 80%;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  .itemId {
+    width: 8%;
+    text-align: left;
+    padding-left: 2%;
+  }
+  
+  .itemExpens {
+    width: 60%;
+    text-align: left;
+  }
+  
+  .itemDate {
+    width: 15%;
+  }
+  
+  .itemPrice {
+    width: 15%;
+  }
+
+  .darkMode {
+    background-color: rgb(50, 52, 50);
+    color: whitesmoke;  
+  }
+  
+  .lightMode {
+    background-color: rgb(240, 235, 240);
+    color: rgb(70, 70, 70);
+  }
+  
+  

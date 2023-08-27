@@ -1,0 +1,68 @@
+/* Форма занесения расхода */
+
+.expensForm {
+    border-radius: 5px;
+    padding: 20px;
+    text-align: left;
+    max-width: 800px;
+    box-sizing: border-box;
+  }
+  
+  .expens {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .price {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .date {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 1em;
+  }
+  
+  .submit:hover {
+    background-color: #45a049;
+  }
+  
+
+  .darkMode {
+    background-color: rgb(50, 52, 50);
+    color: whitesmoke;  
+  }
+  
+  .lightMode {
+    background-color: rgb(240, 235, 240);
+    color: rgb(70, 70, 70);
+  }
+  
