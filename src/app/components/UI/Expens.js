@@ -10,6 +10,9 @@ import { ThemeContext } from '../../context/ThemeProvider';
 import { store } from '@/app/store/store';
 import { Provider } from 'react-redux'
 import { Counter } from '@/app/store/Counter';
+import { ExpensInStore } from '@/app/store/ExpensInStore';
+import { useSelector, useDispatch } from 'react-redux'
+import { addExpens } from '@/app/store/expensSlice';
 
 function TodayForInputDefault() { //Дата в формате YYYY-MM-DD для input defaultValue
     let currentToday = new Date();
@@ -101,6 +104,8 @@ export default function Home() {
             </Theme>
 
             <Counter></Counter>
+            <ExpensInStore></ExpensInStore>
+
         </Provider>
     );
 }
