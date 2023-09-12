@@ -15,20 +15,20 @@ export const expensSlice = createSlice({
     reducers: {
         addExpens: (state) =>
             [...state,
-            // {
-            //     id: state.length + 1,
-            //     expens: 'Тестовый продукт',
-            //     price: 9999,
-            //     exchange: 'руб',
-            //     date: '12.03.2023',
-            // }
             {
-                id,
-                expens,
-                price,
-                exchange,
-                date,
+                id: state.length + 1,
+                expens: 'Тестовый продукт',
+                price: 9999,
+                exchange: 'руб',
+                date: '12.03.2023',
             }
+                // {
+                //     id,
+                //     expens,
+                //     price,
+                //     exchange,
+                //     date,
+                // }
             ],
         // decrement: (state) => {
         //     state.value -= 1
