@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addExpens } from './expensSlice'
 
 export function ExpensInStore() {
-    const arr = useSelector((state) => state.expens)
-    const dispatch = useDispatch()
+    const arr = useSelector((state) => state.expens);
+    const dispatch = useDispatch();
     console.log(arr);
 
     return (
