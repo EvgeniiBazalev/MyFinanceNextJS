@@ -13,29 +13,8 @@ export const expensSlice = createSlice({
     name: 'expensSlice',
     initialState,
     reducers: {
-        addExpens: (state) =>
-            [...state,
-            {
-                id: state.length + 1,
-                expens: 'Тестовый продукт',
-                price: 9999,
-                exchange: 'руб',
-                date: '12.03.2023',
-            }
-                // {
-                //     id,
-                //     expens,
-                //     price,
-                //     exchange,
-                //     date,
-                // }
-            ],
-        // decrement: (state) => {
-        //     state.value -= 1
-        // },
-        // incrementByAmount: (state, action) => {
-        //     state.value += action.payload
-        // },
+        addExpens: (state, action) =>
+            [...state, action.payload]
     },
 })
 

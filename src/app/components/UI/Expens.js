@@ -1,16 +1,13 @@
 'use client'
 
 import styles from './Expens.module.css'
+
 import { useContext, useState } from 'react';
+
 import AddExpens from './AddExpens';
 import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import { ThemeContext } from '../../context/ThemeProvider';
-
-import { store } from '@/app/store/store';
-import { Provider } from 'react-redux'
-import { Counter } from '@/app/store/Counter';
-import { ExpensInStore } from '@/app/store/ExpensInStore';
 import { useSelector, useDispatch } from 'react-redux'
 import { addExpens } from '@/app/store/expensSlice';
 
@@ -32,10 +29,14 @@ function formatDate(date) { //Преобразование даты из фор�
     return `${day}.${month}.${year}`;
 };
 
-export default function Home() {
+export default function Expens() {
     //theme mode
     const { isDarkMode, setDarkMode } = useContext(ThemeContext);
     const [themeName, setThemeName] = useState('Темная тема');
+
+    const listOfExpenses = useSelector((state) => state.expens);
+    const dispatch = useDispatch();
+
 
     const onThemeHandler = () => {
         isDarkMode ? setThemeName('Темная тема') : setThemeName('Светлая тема');
@@ -47,14 +48,6 @@ export default function Home() {
     const [expens, setExpens] = useState('');
     const [price, setPrice] = useState(0);
     const [userDate, setUserDate] = useState(TodayForInputDefault());
-    const [listOfExpenses, setListOfExpenses] = useState([
-        { id: 1, expens: 'Продукты', price: 2000, exchange: 'руб', date: '01.01.2021' },
-        { id: 2, expens: 'Курица', price: 5000, exchange: 'руб', date: '05.01.2021' },
-        { id: 3, expens: 'Вазелин', price: 500, exchange: 'руб', date: '01.02.2022' },
-        { id: 4, expens: 'Лекарства', price: 1500, exchange: 'руб', date: '12.02.2022' },
-        { id: 5, expens: 'Парикмахер', price: 1000, exchange: 'руб', date: '01.03.2023' },
-        { id: 6, expens: 'Маникюр', price: 6000, exchange: 'руб', date: '12.03.2023' },
-    ]);
 
     const onExpensHandler = (event) => {
         setExpens(event.target.value);
@@ -69,43 +62,40 @@ export default function Home() {
 
     let onSubmitHandler = (event) => {
         event.preventDefault();
-        setListOfExpenses([...listOfExpenses,
-        {
-            id: listOfExpenses.length + 1,
-            expens: expens,
-            price: price,
-            exchange: 'руб',
-            date: userDate === TodayForInputDefault() ? formatDate(userDate) : userDate,
-        }
-        ]);
+
+        dispatch(addExpens(
+            {
+                id: listOfExpenses.length + 1,
+                expens,
+                price,
+                exchange: 'руб',
+                date: userDate === TodayForInputDefault() ? formatDate(userDate) : userDate,
+            }
+        ))
+
     }
 
     return (
-        <Provider store={store}>
-            <Theme>
-                <div className={styles.App}>
 
-                    <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
+        <Theme>
+            <div className={styles.App}>
 
-                    <p>Список расходов</p>
+                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
 
-                    <AddExpens
+                <p>Список расходов</p>
 
-                        onExpensHandler={onExpensHandler}
-                        onPriceHandler={onPriceHandler}
-                        onUserDateHandler={onUserDateHandler}
-                        onSubmitHandler={onSubmitHandler}
-                        TodayForInputDefault={TodayForInputDefault}
-                    />
+                <AddExpens
 
-                    <TableOfExpens listOfExpenses={listOfExpenses} />
-                </div >
+                    onExpensHandler={onExpensHandler}
+                    onPriceHandler={onPriceHandler}
+                    onUserDateHandler={onUserDateHandler}
+                    onSubmitHandler={onSubmitHandler}
+                    TodayForInputDefault={TodayForInputDefault}
+                />
 
-            </Theme>
+                <TableOfExpens listOfExpenses={listOfExpenses} />
+            </div >
 
-            <Counter></Counter>
-            <ExpensInStore></ExpensInStore>
-
-        </Provider>
+        </Theme>
     );
 }

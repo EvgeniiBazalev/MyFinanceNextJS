@@ -5,18 +5,20 @@ import { addExpens } from './expensSlice'
 export function ExpensInStore() {
     const arr = useSelector((state) => state.expens);
     const dispatch = useDispatch();
-    console.log(arr);
+    // console.log(arr);
 
     return (
         <div>
             <button
-                onClick={() => dispatch(addExpens({
-                    id: 77,
-                    expens: 'Тестовый продукт',
-                    price: 9999,
-                    exchange: 'руб',
-                    date: '12.03.2023',
-                }))}
+                onClick={() => dispatch(addExpens(
+                    {
+                        id: 99,
+                        expens: 'Тестовый продукт',
+                        price: 9999,
+                        exchange: 'руб',
+                        date: '12.03.2023',
+                    }
+                ))}
             >
                 addExpens
             </button>
