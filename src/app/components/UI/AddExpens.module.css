@@ -16,6 +16,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+
+    background-color: aliceblue;
   }
   
   .price {
@@ -26,6 +28,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+
+    background-color: aliceblue;
   }
   
   .date {
@@ -36,6 +40,9 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+
+    background-color: aliceblue;
+    color: black;
   }
   
   .submit {
@@ -54,6 +61,7 @@
   .submit:hover {
     background-color: #45a049;
   }
+
   
 
   .darkMode {
