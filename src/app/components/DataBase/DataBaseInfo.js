@@ -2,22 +2,30 @@ import axios from 'axios';
 
 // URL вашей базы данных Firebase Realtime Database
 const firebaseDatabaseURL = 'https://myfinancenextjs-default-rtdb.europe-west1.firebasedatabase.app/';
+const dataPath = 'collectionOne';
+
+const newData = {
+    key1: 'new_value1',
+    key2: 'new_value2',
+};
 
 // Функция для отправки данных
-let postData = async function sendDataToFirebase() {
+let postData = async function updateOrCreateData() {
     try {
-        // Данные, которые вы хотите отправить
-        const newData = {
-            key1: 'value1',
-            key2: 'value2',
-        };
+        // Выполняем GET-запрос для проверки существующих данных
+        const response = await axios.get(`${firebaseDatabaseURL}/${dataPath}.json`);
 
-        // Отправляем POST-запрос для добавления данных в Firebase
-        const response = await axios.post(`${firebaseDatabaseURL}/your_collection_name.json`, newData);
+        if (response.data) {
+            // Если данные существуют, выполняем PUT-запрос для обновления
+            await axios.put(`${firebaseDatabaseURL}/${dataPath}.json`, newData);
+        } else {
+            // Если данных нет, выполняем POST-запрос для создания новой записи
+            await axios.post(`${firebaseDatabaseURL}/${dataPath}.json`, newData);
+        }
 
-        console.log('Данные успешно отправлены в базу данных Firebase:', response.data);
+        console.log('Данные успешно обновлены или созданы в базе данных Firebase');
     } catch (error) {
-        console.error('Ошибка при отправке данных в базу данных Firebase:', error);
+        console.error('Ошибка при работе с данными в базе данных Firebase:', error);
     }
 }
 
