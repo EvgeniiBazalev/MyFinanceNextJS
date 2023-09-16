@@ -35,13 +35,19 @@ const AddExpens = (props) => {
                     <input
                         className={styles.date}
                         type="date"
-                        defaultValue={props.TodayForInputDefault()}
+                        defaultValue={props.todayForInputDefault()}
                         onChange={props.onUserDateHandler}
                     >
                     </input>
                 </label>
 
-                <input className={styles.submit} type="submit" value="Внести расход"></input>
+                <button
+                    className={styles.submit}
+                    disabled={props.isButtonDisabled} // Деактивируем кнопку, если isButtonDisabled равен true
+                    type="submit"
+                >
+                    Внести расход
+                </button>
             </form>
         </div>
     );

@@ -1,17 +1,104 @@
 'use client'
 
 import styles from './Expens.module.css'
-
-import { useContext, useState } from 'react';
-
+import { useContext, useState, useEffect } from 'react';
 import AddExpens from './AddExpens';
 import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
 import { addExpens } from '@/app/store/expensSlice';
+import { postData } from '../DataBase/DataBaseInfo';
 
-function TodayForInputDefault() { //Дата в формате YYYY-MM-DD для input defaultValue
+export default function Expens() {
+    //theme mode
+    const { isDarkMode, setDarkMode } = useContext(ThemeContext);
+    const [themeName, setThemeName] = useState('Темная тема');
+
+    const [isButtonDisabled, setButtonDisabled] = useState(false); // Изначально кнопка активна
+
+    const listOfExpenses = useSelector((state) => state.expens);
+    const dispatch = useDispatch();
+
+
+    const onThemeHandler = () => {
+        isDarkMode ? setThemeName('Темная тема') : setThemeName('Светлая тема');
+        setDarkMode(prevMode => !prevMode);
+    }
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                await postData(listOfExpenses);
+            } catch (error) {
+                console.error('Ошибка при отправке данных:', error);
+            } finally {
+                setTimeout(() => {
+                    setButtonDisabled(false);
+                }, 500);
+            }
+        };
+
+        fetchData();
+    }, [listOfExpenses]);
+
+
+    //list of expens
+    const [expens, setExpens] = useState('');
+    const [price, setPrice] = useState(0);
+    const [userDate, setUserDate] = useState(todayForInputDefault());
+
+    const onExpensHandler = (event) => {
+        setExpens(event.target.value);
+    }
+    const onPriceHandler = (event) => {
+        setPrice(event.target.value);
+    }
+    const onUserDateHandler = (event) => {
+        setUserDate(formatDate(event.target.value));
+    }
+
+    let onSubmitHandler = (event) => {
+        setButtonDisabled(true);
+        console.log(isButtonDisabled);
+        event.preventDefault();
+        dispatch(addExpens(
+            {
+                id: listOfExpenses.length + 1,
+                expens,
+                price,
+                exchange: 'руб',
+                date: userDate === todayForInputDefault() ? formatDate(userDate) : userDate,
+            }
+        ))
+    }
+
+    return (
+        <Theme>
+            <div className={styles.App}>
+
+                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
+
+                <h1>Список расходов</h1>
+
+                <AddExpens
+                    onExpensHandler={onExpensHandler}
+                    onPriceHandler={onPriceHandler}
+                    onUserDateHandler={onUserDateHandler}
+                    onSubmitHandler={onSubmitHandler}
+                    todayForInputDefault={todayForInputDefault}
+                    isButtonDisabled={isButtonDisabled}
+                />
+
+                <TableOfExpens listOfExpenses={listOfExpenses} />
+            </div >
+        </Theme>
+    );
+}
+
+
+function todayForInputDefault() { //Дата в формате YYYY-MM-DD для input defaultValue
     let currentToday = new Date();
     let currentDate = currentToday.getDate() > 10 ? currentToday.getDate() : '0' + currentToday.getDate();
     let currentMonth = (currentToday.getMonth() + 1) > 10 ? (currentToday.getMonth() + 1) : '0' + (currentToday.getMonth() + 1);
@@ -28,74 +115,3 @@ function formatDate(date) { //Преобразование даты из фор�
 
     return `${day}.${month}.${year}`;
 };
-
-export default function Expens() {
-    //theme mode
-    const { isDarkMode, setDarkMode } = useContext(ThemeContext);
-    const [themeName, setThemeName] = useState('Темная тема');
-
-    const listOfExpenses = useSelector((state) => state.expens);
-    const dispatch = useDispatch();
-
-
-    const onThemeHandler = () => {
-        isDarkMode ? setThemeName('Темная тема') : setThemeName('Светлая тема');
-        setDarkMode(prevMode => !prevMode);
-    }
-
-
-    //list of expens
-    const [expens, setExpens] = useState('');
-    const [price, setPrice] = useState(0);
-    const [userDate, setUserDate] = useState(TodayForInputDefault());
-
-    const onExpensHandler = (event) => {
-        setExpens(event.target.value);
-    }
-    const onPriceHandler = (event) => {
-        setPrice(event.target.value);
-    }
-
-    const onUserDateHandler = (event) => {
-        setUserDate(formatDate(event.target.value));
-    }
-
-    let onSubmitHandler = (event) => {
-        event.preventDefault();
-
-        dispatch(addExpens(
-            {
-                id: listOfExpenses.length + 1,
-                expens,
-                price,
-                exchange: 'руб',
-                date: userDate === TodayForInputDefault() ? formatDate(userDate) : userDate,
-            }
-        ))
-
-    }
-
-    return (
-
-        <Theme>
-            <div className={styles.App}>
-
-                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
-
-                <p>Список расходов</p>
-
-                <AddExpens
-
-                    onExpensHandler={onExpensHandler}
-                    onPriceHandler={onPriceHandler}
-                    onUserDateHandler={onUserDateHandler}
-                    onSubmitHandler={onSubmitHandler}
-                    TodayForInputDefault={TodayForInputDefault}
-                />
-
-                <TableOfExpens listOfExpenses={listOfExpenses} />
-            </div >
-
-        </Theme>
-    );
-}

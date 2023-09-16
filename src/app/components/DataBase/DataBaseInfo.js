@@ -10,7 +10,7 @@ const newData = {
 };
 
 // Функция для отправки данных
-export const postData = async function updateOrCreateData() {
+export const postData = async function updateOrCreateData(newData) {
     try {
         // Выполняем GET-запрос для проверки существующих данных
         const response = await axios.get(`${firebaseDatabaseURL}/${dataPath}.json`);
