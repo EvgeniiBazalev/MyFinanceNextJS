@@ -10,7 +10,7 @@ const newData = {
 };
 
 // Функция для отправки данных
-let postData = async function updateOrCreateData() {
+export const postData = async function updateOrCreateData() {
     try {
         // Выполняем GET-запрос для проверки существующих данных
         const response = await axios.get(`${firebaseDatabaseURL}/${dataPath}.json`);
@@ -29,5 +29,24 @@ let postData = async function updateOrCreateData() {
     }
 }
 
-export default postData;
+export const getData = async function readDataFromFirebase() {
+    try {
+        // Выполняем GET-запрос для получения данных
+        const response = await axios.get(`${firebaseDatabaseURL}/${dataPath}.json`);
+
+        if (response.data) {
+            // Если данные существуют, выводим их в консоль
+            console.log('Данные из Firebase Realtime Database:', response.data);
+        } else {
+            console.log('Данные по указанному пути отсутствуют.');
+        }
+    } catch (error) {
+        console.error('Ошибка при чтении данных из базы данных Firebase:', error);
+    }
+}
+
+
+
+
+
 
