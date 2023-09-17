@@ -16,6 +16,7 @@ export default function Expens() {
     const [themeName, setThemeName] = useState('Темная тема');
 
     const [isButtonDisabled, setButtonDisabled] = useState(false); // Изначально кнопка активна
+    const [isPageLoaded, setPageLoaded] = useState(false); //Изачально false до загрузки данных из БД
 
     const listOfExpenses = useSelector((state) => state.expens);
     const dispatch = useDispatch();
@@ -33,8 +34,8 @@ export default function Expens() {
             try {
                 setButtonDisabled(true);
                 const dataFromDataBase = await getData();
-                console.log(dataFromDataBase);
                 dispatch(newExpens(dataFromDataBase));
+                setPageLoaded(true);
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
             } finally {
@@ -43,8 +44,10 @@ export default function Expens() {
                 }, 100);
             }
         }
+        if (!isPageLoaded) {
+            getDataToReduxStore();
+        }
 
-        getDataToReduxStore();
     }, []);
 
     //Отправка данных в БД
@@ -60,11 +63,10 @@ export default function Expens() {
                 }, 100);
             }
         };
-        if (listOfExpenses.length > 0) {
-            // Выполняем sendData только если есть данные в listOfExpenses
+
+        if (isPageLoaded) {
             fetchData();
         }
-
     }, [listOfExpenses]);
 
 
@@ -85,7 +87,6 @@ export default function Expens() {
 
     let onSubmitHandler = (event) => {
         setButtonDisabled(true);
-        console.log(isButtonDisabled);
         event.preventDefault();
         dispatch(addExpens(
             {
