@@ -7,8 +7,8 @@ import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
-import { addExpens } from '@/app/store/expensSlice';
-import { postData } from '../DataBase/DataBaseInfo';
+import { addExpens, newExpens } from '@/app/store/expensSlice';
+import { postData, getData } from '../DataBase/DataBaseInfo';
 
 export default function Expens() {
     //theme mode
@@ -26,8 +26,29 @@ export default function Expens() {
         setDarkMode(prevMode => !prevMode);
     }
 
+    //Получение данных из БД
     useEffect(() => {
 
+        const getDataToReduxStore = async () => {
+            try {
+                setButtonDisabled(true);
+                const dataFromDataBase = await getData();
+                console.log(dataFromDataBase);
+                dispatch(newExpens(dataFromDataBase));
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            } finally {
+                setTimeout(() => {
+                    setButtonDisabled(false);
+                }, 100);
+            }
+        }
+
+        getDataToReduxStore();
+    }, []);
+
+    //Отправка данных в БД
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 await postData(listOfExpenses);
@@ -36,11 +57,14 @@ export default function Expens() {
             } finally {
                 setTimeout(() => {
                     setButtonDisabled(false);
-                }, 500);
+                }, 100);
             }
         };
+        if (listOfExpenses.length > 0) {
+            // Выполняем sendData только если есть данные в listOfExpenses
+            fetchData();
+        }
 
-        fetchData();
     }, [listOfExpenses]);
 
 

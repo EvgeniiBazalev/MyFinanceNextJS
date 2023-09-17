@@ -37,8 +37,10 @@ export const getData = async function readDataFromFirebase() {
         if (response.data) {
             // Если данные существуют, выводим их в консоль
             console.log('Данные из Firebase Realtime Database:', response.data);
+            return response.data;
         } else {
             console.log('Данные по указанному пути отсутствуют.');
+            return [];
         }
     } catch (error) {
         console.error('Ошибка при чтении данных из базы данных Firebase:', error);
