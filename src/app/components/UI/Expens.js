@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import AddExpens from './AddExpens';
 import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
+import ExchangeRates from './dataFromAPI/ExchangeRates';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
 import { addExpens, newExpens } from '@/app/store/expensSlice';
@@ -106,6 +107,8 @@ export default function Expens() {
                     <h1 className={styles.headOfFormText}>Мои финансы</h1>
                     <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
                 </div>
+
+                <ExchangeRates></ExchangeRates>
 
 
 
