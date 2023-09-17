@@ -6,6 +6,7 @@ import AddExpens from './AddExpens';
 import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import ExchangeRates from './dataFromAPI/ExchangeRates';
+import Test from './dataFromAPI/Test';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
 import { addExpens, newExpens } from '@/app/store/expensSlice';
@@ -109,6 +110,7 @@ export default function Expens() {
                 </div>
 
                 <ExchangeRates></ExchangeRates>
+                <Test></Test>
 
 
 

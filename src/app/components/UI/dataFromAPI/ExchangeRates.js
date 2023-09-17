@@ -4,6 +4,8 @@ import { ThemeContext } from '@/app/context/ThemeProvider';
 
 import axios from 'axios';
 
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:3000';
+
 export default function ExchangeRates() {
     const { isDarkMode, setDarkMode } = useContext(ThemeContext);
 
@@ -24,7 +26,7 @@ export default function ExchangeRates() {
             let ETH = 0;
 
             try {
-                const EUR = await axios.get('https://api.coingate.com/v2/rates/merchant/EUR/RUB');
+                const EUR = await axios.get('/api/exchangeRatesAPI');
                 console.log(EUR);
             } catch (error) {
                 console.error('Ошибка при загрузке данных о курсах валют EUR:', error);
