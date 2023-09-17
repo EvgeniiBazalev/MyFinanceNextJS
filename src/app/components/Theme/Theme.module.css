@@ -1,9 +1,13 @@
 .lightMode {
+    font-family: 'Courier New', Courier, monospace;
+
     background-color: whitesmoke;
     color: rgb(70, 70, 70);
 }
 
 .darkMode {
+    font-family: 'Courier New', Courier, monospace;
+
     background-color: rgb(70, 70, 70);
     color: whitesmoke;
 }

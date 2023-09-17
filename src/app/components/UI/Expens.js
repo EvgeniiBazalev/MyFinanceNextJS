@@ -102,10 +102,12 @@ export default function Expens() {
     return (
         <Theme>
             <div className={styles.App}>
+                <div className={`${styles.headOfForm} + ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
+                    <h1 className={styles.headOfFormText}>Мои финансы</h1>
+                    <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
+                </div>
 
-                <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
 
-                <h1>Список расходов</h1>
 
                 <AddExpens
                     onExpensHandler={onExpensHandler}
@@ -114,7 +116,10 @@ export default function Expens() {
                     onSubmitHandler={onSubmitHandler}
                     todayForInputDefault={todayForInputDefault}
                     isButtonDisabled={isButtonDisabled}
-                />
+                >
+
+
+                </AddExpens>
 
                 <TableOfExpens listOfExpenses={listOfExpenses} />
             </div >
