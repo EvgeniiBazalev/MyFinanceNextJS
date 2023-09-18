@@ -7,7 +7,7 @@ import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 // import ExchangeRates from './dataFromAPI/ExchangeRates';
 // import Test from './dataFromAPI/Test';
-import Test2 from './dataFromAPI/Test2';
+// import Test2 from './dataFromAPI/Test2';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
 import { addExpens, newExpens } from '@/app/store/expensSlice';
@@ -110,7 +110,7 @@ export default function Expens() {
                     <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
                 </div>
 
-                <Test2></Test2>
+                {/* <Test2></Test2> */}
                 {/* <ExchangeRates></ExchangeRates>
                 <Test></Test> */}
 
