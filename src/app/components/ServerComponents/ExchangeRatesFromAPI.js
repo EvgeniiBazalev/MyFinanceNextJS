@@ -1,4 +1,5 @@
 import styles from './ExchangeRatesFromAPI.module.css'
+import FromServToClientComp from '../Supporting/FromServToClientComp';
 
 async function getData() {
     let ExchangeRates = {
@@ -56,13 +57,20 @@ export default async function ExchangeRatesFromAPI() {
     const currencyRates = await getData()
 
     return (
+        <div>
 
-        <div className={styles.currencyRatesContainer}>
-            {Object.keys(currencyRates).map((currency, index) => (
-                <div key={index} className={styles.currencyRate}>
-                    <p>{currency}: {currencyRates[currency]}</p>
-                </div>
-            ))}
+            <FromServToClientComp currencyRates={currencyRates}></FromServToClientComp>
+
+
+            <div className={styles.currencyRatesContainer}>
+                {Object.keys(currencyRates).map((currency, index) => (
+                    <div key={index} className={styles.currencyRate}>
+                        <p>{currency}: {currencyRates[currency]}</p>
+                    </div>
+                ))}
+            </div>
+
         </div>
+
     )
 }
