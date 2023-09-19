@@ -40,7 +40,6 @@ async function getData() {
     }
 
 
-
     ExchangeRates = {
         EUR: EUR,
         USD: USD,

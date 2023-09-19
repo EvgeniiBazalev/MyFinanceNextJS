@@ -1,11 +1,11 @@
 import ExpensUI from "./components/UI/ExpensUI"
-import ExchangeRatesFromAPI from "./components/ServerComponents/ExchangeRatesFromAPI"
+import MainServerComponent from "./components/ServerComponents/MainServerComponent"
 
 export default function Home() {
   return (
     <div>
+      <MainServerComponent></MainServerComponent>
       <ExpensUI></ExpensUI>
-      <ExchangeRatesFromAPI></ExchangeRatesFromAPI>
     </div>
   )
 }
