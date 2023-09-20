@@ -1,4 +1,4 @@
-import styles from './ExchangeRatesFromAPI.module.css'
+
 import FromServToClientComp from '../Supporting/FromServToClientComp';
 
 

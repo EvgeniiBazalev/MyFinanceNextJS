@@ -4,11 +4,6 @@ import axios from 'axios';
 const firebaseDatabaseURL = 'https://myfinancenextjs-default-rtdb.europe-west1.firebasedatabase.app/';
 const dataPath = 'collectionOne';
 
-const newData = {
-    key1: 'new_value1',
-    key2: 'new_value2',
-};
-
 // Функция для отправки данных
 export const postData = async function updateOrCreateData(newData) {
     try {
