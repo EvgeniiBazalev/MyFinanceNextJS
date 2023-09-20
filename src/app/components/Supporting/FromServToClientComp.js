@@ -6,6 +6,7 @@ import { useContext } from "react";
 export default function FromServToClientComp(props) {
 
 
+
     // setCurrentExchange(props.currencyRates);
     console.log(props.currencyRates);
 

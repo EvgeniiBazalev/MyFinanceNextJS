@@ -12,12 +12,12 @@ const ExchangeProvider = ({ children }) => {
         LTC: 0,
         ETH: 0,
     });
-    // const updateExchangeData = (newData) => {
-    //     setCurrentExchange(newData);
-    // };
+    const updateExchangeData = (newData) => {
+        setCurrentExchange(newData);
+    };
 
     return (
-        <ExchangeContext.Provider value={{ currentExchange, setCurrentExchange }} >
+        <ExchangeContext.Provider value={{ currentExchange, setCurrentExchange, updateExchangeData }} >
 
             {children}
 

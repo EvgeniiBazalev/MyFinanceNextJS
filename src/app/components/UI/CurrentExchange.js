@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react"
 import styles from './CurrentExchange.module.css'
 
 export default function CurrentExchange() {
-    const { updateExchangeData } = useContext(ExchangeContext);
+    const { currentExchange, setCurrentExchange, updateExchangeData } = useContext(ExchangeContext);
 
     // useEffect(() => {
     //     updateExchangeData();

@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import AddExpens from './AddExpens';
 import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
+import CurrentExchange from './CurrentExchange';
 // import ExchangeRates from './dataFromAPI/ExchangeRates';
 // import Test from './dataFromAPI/Test';
 // import Test2 from './dataFromAPI/Test2';
@@ -109,6 +110,8 @@ export default function Expens() {
                     <h1 className={styles.headOfFormText}>Мои финансы</h1>
                     <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
                 </div>
+
+                <CurrentExchange></CurrentExchange>
 
                 <AddExpens
                     onExpensHandler={onExpensHandler}

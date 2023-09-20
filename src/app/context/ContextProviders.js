@@ -5,11 +5,11 @@ import ExchangeProvider from "./ExchangeProvider";
 
 const ContextProviders = ({ children }) => {
     return (
-        // <ExchangeProvider>
-        <ThemeProvider>
-            {children}
-        </ThemeProvider>
-        // </ExchangeProvider>
+        <ExchangeProvider>
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
+        </ExchangeProvider>
     );
 }
 
