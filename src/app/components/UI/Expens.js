@@ -111,7 +111,7 @@ export default function Expens() {
                     <button className={`${styles.themeButton} + ${isDarkMode ? styles.darkMode : styles.lightMode}`} onClick={onThemeHandler}>{themeName}</button>
                 </div>
 
-                <CurrentExchange></CurrentExchange>
+                {/* <CurrentExchange></CurrentExchange> */}
 
                 <AddExpens
                     onExpensHandler={onExpensHandler}
