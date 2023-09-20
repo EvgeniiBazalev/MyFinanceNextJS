@@ -1,12 +1,12 @@
 'use client'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { newExchange } from '@/app/store/exchangeSlice';
+import { ExchangeContext } from "@/app/context/ExchangeProvider";
+import { useContext } from "react";
 
 export default function FromServToClientComp(props) {
-    const dispatch = useDispatch();
-    const exchange = useSelector((state) => state.exchange);
-    dispatch(newExchange(props.currencyRates));
+
+    const { currentExchange, setCurrentExchange } = useContext(ExchangeContext);
+    setCurrentExchange(props.currencyRates);
     console.log(props.currencyRates);
     return (
         <div>
