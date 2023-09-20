@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 export default function FromServToClientComp(props) {
 
-    const { updateExchangeData } = useContext(ExchangeContext);
+
     // setCurrentExchange(props.currencyRates);
     console.log(props.currencyRates);
 
