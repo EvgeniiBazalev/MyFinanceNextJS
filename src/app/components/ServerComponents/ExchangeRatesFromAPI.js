@@ -1,6 +1,8 @@
 import styles from './ExchangeRatesFromAPI.module.css'
 import FromServToClientComp from '../Supporting/FromServToClientComp';
 
+
+
 async function getData() {
     let ExchangeRates = {
         EUR: 0,
