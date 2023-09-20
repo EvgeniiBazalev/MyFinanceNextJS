@@ -62,13 +62,13 @@ export default async function ExchangeRatesFromAPI() {
             <FromServToClientComp currencyRates={currencyRates}></FromServToClientComp>
 
 
-            <div className={styles.currencyRatesContainer}>
+            {/* <div className={styles.currencyRatesContainer}>
                 {Object.keys(currencyRates).map((currency, index) => (
                     <div key={index} className={styles.currencyRate}>
                         <p>{currency}: {currencyRates[currency]}</p>
                     </div>
                 ))}
-            </div>
+            </div> */}
 
         </div>
 
