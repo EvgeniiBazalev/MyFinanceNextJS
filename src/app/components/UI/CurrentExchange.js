@@ -6,9 +6,6 @@ import styles from './CurrentExchange.module.css'
 export default function CurrentExchange() {
     const { currentExchange, setCurrentExchange, updateExchangeData } = useContext(ExchangeContext);
 
-    // useEffect(() => {
-    //     updateExchangeData();
-    // }, []);
     return (
         <div>
             {Object.keys(currentExchange).map((currency, index) => (

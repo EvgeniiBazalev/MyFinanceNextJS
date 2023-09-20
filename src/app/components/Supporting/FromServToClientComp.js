@@ -5,9 +5,9 @@ import { useContext } from "react";
 
 export default function FromServToClientComp(props) {
 
+    const { currentExchange, setCurrentExchange, updateExchangeData } = useContext(ExchangeContext);
 
-
-    // setCurrentExchange(props.currencyRates);
+    updateExchangeData(props.currencyRates);
     console.log(props.currencyRates);
 
     //Ничего не возвращаем а только отдаем данные в context
