@@ -4,7 +4,7 @@ import MainServerComponent from "./components/ServerComponents/MainServerCompone
 export default function Home() {
   return (
     <div>
-      {/* <MainServerComponent></MainServerComponent> */}
+      <MainServerComponent></MainServerComponent>
       <ExpensUI></ExpensUI>
     </div>
   )

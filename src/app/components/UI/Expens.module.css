@@ -1,13 +1,15 @@
 .App {
     text-align: center;
     /* font-size: 1em; */
+    max-width: 800px;
     width: 80%;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
   }
   
   .headOfForm {
-    max-width: 800px;
+    
     height: 100px;
     display: flex;
     justify-content: space-between;

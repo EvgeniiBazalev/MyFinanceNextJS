@@ -1,5 +1,5 @@
 
-import FromServToClientComp from '../Supporting/FromServToClientComp';
+import CurrentExchange from "../UI/CurrentExchange";
 
 
 
@@ -60,19 +60,7 @@ export default async function ExchangeRatesFromAPI() {
 
     return (
         <div>
-
-            <FromServToClientComp currencyRates={currencyRates}></FromServToClientComp>
-
-
-            {/* <div className={styles.currencyRatesContainer}>
-                {Object.keys(currencyRates).map((currency, index) => (
-                    <div key={index} className={styles.currencyRate}>
-                        <p>{currency}: {currencyRates[currency]}</p>
-                    </div>
-                ))}
-            </div> */}
-
+            <CurrentExchange currencyRates={currencyRates}></CurrentExchange>
         </div>
-
     )
 }
