@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AddExpens.module.css'
 import { useContext } from 'react';
-import { ThemeContext } from '@/app/context/ThemeProvider';
+import { ThemeContext } from '@/context/ThemeProvider';
 
 
 const AddExpens = (props) => {

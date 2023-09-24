@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Theme.module.css'
 import { useContext } from 'react';
-import { ThemeContext } from '@/app/context/ThemeProvider';
+import { ThemeContext } from '@/context/ThemeProvider';
 
 const Theme = ({ children }) => {
     const { isDarkMode } = useContext(ThemeContext);

@@ -7,7 +7,7 @@ import TableOfExpens from './TableOfExpens';
 import Theme from '../Theme/Theme';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector, useDispatch } from 'react-redux'
-import { addExpens, newExpens } from '@/app/store/expensSlice';
+import { addExpens, newExpens } from '@/store/expensSlice';
 import { postData, getData } from '../DataBase/DataBaseInfo';
 
 export default function Expens() {

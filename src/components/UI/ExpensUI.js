@@ -1,7 +1,7 @@
 'use client'
 
 import { Provider } from "react-redux"
-import { store } from "@/app/store/store"
+import { store } from "@/store/store"
 import Expens from "./Expens"
 
 // import { postData, getData } from "../DataBase/DataBaseInfo"

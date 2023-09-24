@@ -1,6 +1,6 @@
 'use client'
 
-import { ThemeContext } from '@/app/context/ThemeProvider';
+import { ThemeContext } from '@/context/ThemeProvider';
 import styles from './CurrentExchange.module.css'
 import { useContext } from 'react'
 

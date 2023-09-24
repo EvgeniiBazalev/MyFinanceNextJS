@@ -1,6 +1,6 @@
 import styles from './TableOfExpens.module.css'
 import { useContext } from 'react';
-import { ThemeContext } from '@/app/context/ThemeProvider';
+import { ThemeContext } from '@/context/ThemeProvider';
 
 
 const TableOfExpens = (props) => {
